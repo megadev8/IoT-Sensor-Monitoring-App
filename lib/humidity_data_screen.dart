@@ -29,15 +29,43 @@ class HumidityDataScreen extends StatelessWidget {
     String precautions = generatePrecautions(humidity);
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 93, 153, 184),
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 93, 153, 184),
-        title: Text('Humidity Data'),
+        backgroundColor: Colors.white,
+        title: Center(
+          child: Text(
+            'Humidity Data',
+            style: TextStyle(
+              fontSize: 34, // Adjust the font size as needed
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+        ),
+        leading: Container(
+          margin: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.lightGreen,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: IconButton(
+            icon: Icon(Icons.arrow_back),
+            color: Colors.white,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Image(
+              image: AssetImage(
+                  'assets/images/Humidity-Chart.png'), // Change chart image source
+            ),
+            SizedBox(height: 30.0),
             Text(
               'Humidity: ${humidity.toStringAsFixed(1)}%', // Display dummy humidity data
               style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
@@ -46,7 +74,7 @@ class HumidityDataScreen extends StatelessWidget {
             Text(
               precautions,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),
+              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
             ),
             SizedBox(height: 40.0),
             ElevatedButton(
@@ -54,7 +82,13 @@ class HumidityDataScreen extends StatelessWidget {
                 // Navigate back to the previous screen
                 Navigator.pop(context);
               },
-              child: Text('Go Back'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.lightGreen, // Change button color
+              ),
+              child: Text(
+                'Go Back',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ],
         ),

@@ -29,15 +29,40 @@ class TemperatureDataScreen extends StatelessWidget {
     String precautions = generatePrecautions(temperature);
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 93, 153, 184),
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 93, 153, 184),
-        title: Text('Temperature Data'),
+        backgroundColor: Colors.white,
+        title: Center(
+          child: Text(
+            'Temperature Data',
+            style: TextStyle(
+              fontSize: 34, // Adjust the font size as needed
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+        ),
+        leading: Container(
+          margin: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.lightGreen,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: IconButton(
+            icon: Icon(Icons.arrow_back),
+            color: Colors.white,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Image(image: AssetImage('assets/images/Temp-Chart.png')),
+            SizedBox(height: 30.0),
             Text(
               'Temperature: ${temperature.toStringAsFixed(1)}°C',
               style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
@@ -54,7 +79,13 @@ class TemperatureDataScreen extends StatelessWidget {
                 // Navigate back to the previous screen
                 Navigator.pop(context);
               },
-              child: Text('Go Back'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.lightGreen, // Change button color
+              ),
+              child: Text(
+                'Go Back',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ],
         ),
